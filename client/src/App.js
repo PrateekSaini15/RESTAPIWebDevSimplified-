@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 import SubscriberTable from "./components/SubscriberTable/index";
+import SubscriberAddForm from "./components/SubscriberAddForm/SubscriberAddForm";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,10 +31,29 @@ class App extends React.Component {
       console.log(this.state.subscriberTableData);
       return (
         <>
-          <h1>Subscribers Details</h1>
-          <SubscriberTable
-            subscriberTableData={this.state.subscriberTableData}
-          />
+          <h1>Subscribers</h1>
+          <BrowserRouter>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/subscribersdetails">Subscribers Detail</Link>
+                </li>
+                <li>
+                  <Link to="/subscriber/add">Add a Subscriber</Link>
+                </li>
+              </ul>
+            </nav>
+            <Switch>
+              <Route path="/subscriber/add">
+                <SubscriberAddForm />
+              </Route>
+              <Route path="/subscribersdetails">
+                <SubscriberTable
+                  subscriberTableData={this.state.subscriberTableData}
+                />
+              </Route>
+            </Switch>
+          </BrowserRouter>
         </>
       );
     } else {
