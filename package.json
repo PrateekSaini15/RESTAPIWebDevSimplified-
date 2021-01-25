@@ -4,12 +4,15 @@
   "description": "REST API tutorial from Web Dev Simplified",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "server": "nodemon server.js",
+    "client": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Prateek Saini",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.12"

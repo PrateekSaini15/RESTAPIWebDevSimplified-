@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import SubscriberTable from "./components/SubscriberTable/index";
 import SubscriberAddForm from "./components/SubscriberAddForm/SubscriberAddForm";
-
+import NavBar from "./components/NavBar/NavBarComponent";
+import store from "./store";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,46 +25,25 @@ class App extends React.Component {
     }
   };
 
-  componentDidMount() {
-    this.getSubscribers();
-  }
   render() {
-    if (this.state.subscriberTableData.length) {
-      console.log(this.state.subscriberTableData);
-      return (
-        <>
-          <h1>Subscribers</h1>
+    return (
+      <>
+        <h1>Subscribers</h1>
+        <Provider store={store}>
           <BrowserRouter>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/subscribersdetails">Subscribers Detail</Link>
-                </li>
-                <li>
-                  <Link to="/subscriber/add">Add a Subscriber</Link>
-                </li>
-              </ul>
-            </nav>
+            <NavBar />
             <Switch>
               <Route path="/subscriber/add">
                 <SubscriberAddForm />
               </Route>
               <Route path="/subscribersdetails">
-                <SubscriberTable
-                  subscriberTableData={this.state.subscriberTableData}
-                />
+                <SubscriberTable />
               </Route>
             </Switch>
           </BrowserRouter>
-        </>
-      );
-    } else {
-      return (
-        <div>
-          <h1>Loading Data</h1>
-        </div>
-      );
-    }
+        </Provider>
+      </>
+    );
   }
 }
 

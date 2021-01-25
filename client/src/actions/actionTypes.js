@@ -1,0 +1,2 @@
+export const GET_SUBSCRIBERS = "GET_SUBSCRIBERS";
+export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
