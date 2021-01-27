@@ -21,8 +21,11 @@ class SubscriberAddForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.addSubscriber(this.state);
-    this.state.name = "";
-    this.state.subscribedToChannel = "";
+    this.setState({
+      ...this.state,
+      name: "",
+      subscribedToChannel: "",
+    });
   };
 
   render() {
