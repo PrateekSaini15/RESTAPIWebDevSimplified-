@@ -2,6 +2,7 @@ import {
   GET_SUBSCRIBERS,
   ADD_SUBSCRIBER,
   DELETE_SUBSCRIBER,
+  UPDATE_SUBSCRIBER,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -26,14 +27,14 @@ export default function (state = initialState, action) {
         subscribers: [...state.subscribers, action.payload],
       };
     case DELETE_SUBSCRIBER:
-      console.log("inside delete subscriber reducer");
-      console.log(action.payload._id);
       return {
         ...state,
         subscribers: state.subscribers.filter(
           (subscriber) => subscriber._id !== action.payload._id
         ),
       };
+    case UPDATE_SUBSCRIBER:
+      return state;
     default:
       return state;
   }

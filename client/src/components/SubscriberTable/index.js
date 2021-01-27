@@ -8,7 +8,6 @@ class SubscriberTable extends React.Component {
     this.props.getSubscribers();
   }
   render() {
-    // console.log(this.props.subscriberTableData);
     const subscribersRows = this.props.subscriberTableData.map((subscriber) => (
       <Row key={subscriber._id} subscriber={subscriber} />
     ));

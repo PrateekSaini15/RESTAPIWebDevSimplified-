@@ -34,11 +34,12 @@ router.post("/", async (req, res) => {
 
 // Updating one record
 router.patch("/:id", getSubscriber, async (req, res) => {
-  if (req.body.name != null) {
-    res.subscriber.name = req.body.name;
+  if (req.body.subscriber.name != null) {
+    res.subscriber.name = req.body.subscriber.name;
   }
-  if (req.body.subscribedToChannel != null) {
-    res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
+  if (req.body.subscriber.subscribedToChannel != null) {
+    res.subscriber.subscribedToChannel =
+      req.body.subscriber.subscribedToChannel;
   }
   try {
     const updatedSubscriber = await res.subscriber.save();

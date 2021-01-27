@@ -1,30 +1,14 @@
 import React from "react";
-import axios from "axios";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import SubscriberTable from "./components/SubscriberTable/index";
 import SubscriberAddForm from "./components/SubscriberAddForm/SubscriberAddForm";
+import SubscriberEditForm from "./components/SubscriberEditForm/SubscribereEditForm";
 import NavBar from "./components/NavBar/NavBarComponent";
 import store from "./store";
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getSubscribers = this.getSubscribers.bind(this);
-    this.state = {
-      subscriberTableData: [],
-    };
-  }
-
-  getSubscribers = async () => {
-    try {
-      let res = await axios.get(`http://localhost:5000/subscribers`);
-      this.setState({ subscriberTableData: res.data });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   render() {
     return (
       <>
@@ -38,6 +22,9 @@ class App extends React.Component {
               </Route>
               <Route path="/subscribersdetails">
                 <SubscriberTable />
+              </Route>
+              <Route path="/subscriber/edit">
+                <SubscriberEditForm />
               </Route>
             </Switch>
           </BrowserRouter>
